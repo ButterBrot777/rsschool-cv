@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>CV, Pavel Karenda</title>
+</head>
+<body>
+  <header>
+      <h1 class="header">My resume</h1>
+  </header>
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title">
+        Pavel, Karenda
+      </h2>
+      <img class="section-img" src="passbild.jpg" alt="my pass photo">
+      <p class="p-content">
+        <strong>Contact E-mail:</strong><i>korendos@gmail.com</i>
+      </p>
+
+      <p class="p-content">
+        I want to be a web-developer because I like this profession.<br>
+        It corresponds to my conception about ideal work: 
+      </p>
+        <ul>
+            <li>great opportunities for professional growth</li>
+            <li>better working atmosphere</li>
+            <li>polite communities</li>
+            <li>many friends with common interests</li>
+          </ul>
+      <p class="p-content">
+        It corresponds to my conception about ideal work:
+      </p>
+      <ul>
+        <li>great opportunities for professional growth</li>
+        <li>better working atmosphere</li>
+        <li>polite communities</li>
+        <li>many friends with common interests</li>
+      </ul>
+      <p class="p-content">
+        I am a <strong>mature</strong> person and I know what I want.
+        I am good at getting on with people. I quickly find the information I need. 
+        I am <strong>diligent and purposeful</strong>.
+      </p>
+      <h2 class="section-title">
+        My skills:
+      </h2>
+      <ul>
+        <li>
+          Programming languages: <strong>Pascal, Fortran 90, HTML, CSS,JavaScript</strong>
+        </li>
+        <li>
+          Version control: <strong>Git</strong>
+        </li>
+        <li>
+          Methodologies: <strong>Scrum & Agile SDM</strong>
+        </li>
+        <li>
+          Tools: <strong>WebStorm, Visual Studio Code, Figma</strong>
+        </li>
+      </ul>
+      <h2 class="section-title">
+        Code examples:
+      </h2>
+      <p class="p-content">
+        This program collects gem-statistics for Ruby. 
+        It parses the github site for such parameters as "watchers", 
+        "stargazers", used_by etc. and gives a list of them.
+      </p>
+      <div class="code-container-content">
+        <code>
+          <pre>
+<!-- BEGIN CODE example -->
+Comment: frozen_string_literal: true
+
+require 'yaml'
+require 'open-uri'
+require 'bundler/setup'
+require './main.rb'
+Bundler.require
+
+Comment: for parsing HTML
+class Parser
+  def get_gem_url(gem_name)
+    url = URI("https://github.com/search?q=#{gem_name}")
+    html = Kernel.open(url).read
+    doc = Nokogiri::HTML(html)
+
+    gem_url = doc.xpath("//ul[@class='repo-list']/li//a").first['href']
+
+    @url_used_by = URI("https://github.com/#{gem_url}/network/dependents")
+	    
+    "https://github.com#{gem_url}"
+  end
+
+  def get_gem_data(gem_name)
+    gem_url = get_gem_url(gem_name)
+    html = Kernel.open(gem_url).read
+    doc = Nokogiri::HTML(html)
+    html_used_by = Kernel.open(@url_used_by).read
+    doc_used_by = Nokogiri::HTML(html_used_by)
+
+    result = {}
+    result[:watch] = doc.xpath("//a[contains(@href, 'watchers')]").text.strip.to_i
+    result[:star] = doc.xpath("//a[contains(@href, 'stargazers')]").text.strip
+    result[:fork] = doc.xpath("//a[contains(@href, 'network/members')]").text.strip
+
+    result[:contributors] = doc.css(".text-emphasized")[3].text.strip.to_i
+    result[:issue] = doc.css(".Counter")[0].text.strip.to_i
+    result[:used_by] = doc_used_by.css('.btn-link')[1].text.gsub(/\D/, '').to_i
+
+    result
+  end
+end
+
+gems = YAML.load_file('gems.yml')
+parser = Parser.new
+
+gems['gems'].each do |gem_name|
+  puts parser.get_gem_data(gem_name)
+  sleep 1
+end <!-- END CODE example -->
+          </pre>
+        </code>
+      </div>
+      <h2 class="section-title">
+        Professional experience
+      </h2>
+      <p class="p-content">
+        I want to get professional experience.
+      </p>
+      <h2 class="section-title">
+        Courses:
+      </h2>
+      <ul>
+        <li>Rubizza Surviving Camp course (_not completed_)</li>
+        <li><a href="https://HTMLacademy.ru">HTMLacademy.ru</a> - online course HTML and CSS</li>
+        <li><a href="http://learn.javascript.ru">learn.javascript.ru</a>
+          - online tutorial for learning JavaScript language
+        </li>
+      </ul>
+      <h2 class="section-title">
+        Language skills:
+      </h2>
+      <ul>
+        <li>English: A2</li>
+        <li>German: B1</li>
+        <li>Polish: B2</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+      <p class="footer">
+        &copy; 2019 made by Pavel Karenda aka ButterBrot777.
+        All rights reserved
+      </p>
+    </footer>
+</body>
+</html>
