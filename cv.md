@@ -1,96 +1,65 @@
-### Pavel, Karenda
-##### E-mail: korendos@gmail.com
-##### I want to be a web-developer because I like this profession. 
+## Pavel, Karenda
+#### E-mail: korendos@gmail.com
+#### I am looking for an employer who is ready to accept a diligent junior developer in his team. I like writing code and will be helpful. 
 
-###### It corresponds to my conception about ideal work:
-     - great opportunities for professional growth
-     - better working atmosphere
-     - polite communities
-     - many friends with common interests
-   I am a **mature** person and I know what I want. 
-   I am good at getting on with people. I quickly find the information I need. 
-   I am **diligent and purposeful**.
+#### My conception about ideal work:
+- interesting and challenging tasks
+- great opportunities for professional growth
+- better working atmosphere
+- polite communities
 
-#### My skills are:
+My **soft skills** are at a good level.
+I am good at getting on with people, quickly find the information I need. I am **diligent and purposeful**.
+
+#### My skills:
 
 ##### * Programming languages and skills:
-    
-      - Pascal
-      - Fortran 90
-  	  - HTML
-  	  - CSS
-  	  - JavaScript
+- Pascal (at school)
+- Fortran 90 (at university)
+- HTML
+- CSS3
+- JavaScript ES6
+
 #####  * Version control:
-   	 - Git 
+- Git 
+
 #####  * Methodologies:
-     - Scrum & Agile SDM
+- Scrum, Kanban, Agile
+
 ##### * Tools:
-     - WebStorm, Visual Studio Code, Figma
+- WebStorm, Visual Studio Code, Figma, DevTools
 
 #### Code examples: 
-	<!-- BEGIN CODE example -->
-	<!-- This program collects gem-statistics for Ruby. It parses the github site for such parameters as "watchers", "stargazers", used_by etc. and gives a list of them. -->
-	<!--# frozen_string_literal: true-->
+###### Returns the polynom function of one argument based on specified coefficients.
+```
+  function getPolynom(...args) {
+    return (elem) => {
+      let result = 0;
+      for (let i = 0; i < args.length; i += 1) {
+        result += args[args.length - i - 1] * elem ** i;
+      }
+      return result;
+    };
+  }
+```
+###### getPolynom(2,3,4) => y = 2*x^2 + 3*x + 4
 
-	require 'yaml'
-	require 'open-uri'
-	require 'bundler/setup'
-	require './main.rb'
-	Bundler.require
+#### Professional experience: 
 
-	<!--# for parsing HTML-->
-	class Parser
-	  def get_gem_url(gem_name)
-	    url = URI("https://github.com/search?q=#{gem_name}")
-	    html = Kernel.open(url).read
-	    doc = Nokogiri::HTML(html)
-
-	    gem_url = doc.xpath("//ul[@class='repo-list']/li//a").first['href']
-
-	    @url_used_by = URI("https://github.com/#{gem_url}/network/dependents")
-	    
-
-	    "https://github.com#{gem_url}"
-	  end
-
-	  def get_gem_data(gem_name)
-	    gem_url = get_gem_url(gem_name)
-	    html = Kernel.open(gem_url).read
-	    doc = Nokogiri::HTML(html)
-	    html_used_by = Kernel.open(@url_used_by).read
-	    doc_used_by = Nokogiri::HTML(html_used_by)
-
-	    result = {}
-	    result[:watch] = doc.xpath("//a[contains(@href, 'watchers')]").text.strip.to_i
-	    result[:star] = doc.xpath("//a[contains(@href, 'stargazers')]").text.strip
-	    result[:fork] = doc.xpath("//a[contains(@href, 'network/members')]").text.strip
-
-	    result[:contributors] = doc.css(".text-emphasized")[3].text.strip.to_i
-	    result[:issue] = doc.css(".Counter")[0].text.strip.to_i
-	    result[:used_by] = doc_used_by.css('.btn-link')[1].text.gsub(/\D/, '').to_i
-
-	    result
-	  end
-
-	  gems = YAML.load_file('gems.yml')
-	  parser = Parser.new
-
-	  gems['gems'].each do |gem_name|
-		puts parser.get_gem_data(gem_name)
-		sleep 1
-	  end
-
-	end
-	<!-- END CODE example -->
-
-#### Professional experience: no
+| Date | Work |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| December 2018 — June 2019 | JAKOSTA Sp. z o.o. Sp. k., Wroclaw, Poland<br>Industrial and civil construction engineer/designer<br>- development of design documentation for the Volkswagen factory in Poznan, Poland; |
+| March 2016 — October 2018 | „Züblin Stahlbau GmbH“ in Hosena, Germany<br>Industrial and civil construction engineer/designer<br>Elaboration of design documentation of:<br>- office building Adidas in Herzogenaurach, Germany;<br>- thermoelectric power station Heizkraftwerk Marzahn Berlin, Germany;<br>- thermoelectric power station Heizkraftwerk Lichterfelde, Berlin, Germany; |
+| June 2015 — September 2015 | “Hemet Sp. z o.o”, Zielona Gora, Poland<br>Engineer/estimator<br>calculation of the cost of equipment for arrangement of children's playgrounds and its installation; |
+| August 2012 — February 2015 | MinskMetroProject<br>Industrial and civil construction engineer/drafter<br>- development of design and estimate documentation for the Minsk metro stations (metro station Klara Zetkin) |
 
 #### Courses:
-##### - Rubizza Surviving Camp course (_not completed_)
+##### - Rubizza Surviving Camp course
 ##### - [HTMLacademy.ru](https://HTMLacademy.ru) - online course HTML and CSS
 ##### - [Learn.javascript.ru](http://learn.javascript.ru) - online tutorial for learning JavaScript language
+##### - [The Rolling Scopes School](https://docs.rs.school/#/) - international developer community
 
 #### Language skills:
-	 - English: A2
-	 - German: B1
-	 - Polish: B2
+- English: A2+
+- German: B1
+- Polish: C1
